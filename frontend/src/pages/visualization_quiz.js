@@ -14,6 +14,15 @@ var num = 30
 class VisQuiz extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            response_likert: [
+                { value: 1, text: "Strongly Disagree", checked: false },
+                { value: 2, text: "Disagree", checked: false },
+                { value: 3, text: "Neither Agree nor Disagree", checked: false },
+                { value: 4, text: "Agree", checked: false },
+                { value: 5, text: "Strongly Agree", checked: false }
+            ]
+        }
     }
 
     componentDidMount() {
@@ -35,8 +44,7 @@ class VisQuiz extends Component {
             comment: '',
             width: 0,
             height: 0,
-            selectedValue: '',
-            image_list: null
+            image_list: null,
 
         }
         )
@@ -177,9 +185,7 @@ class VisQuiz extends Component {
     }
 
     next_btn() {
-        this.setState({
-            selectedValue: 3
-        })
+        document.getElementById('visuallyHidden').checked = false
         console.log("Next button is clicked")
         this.setState({
             current_visualization_index: this.state.current_visualization_index + 1,
@@ -218,118 +224,52 @@ class VisQuiz extends Component {
                 <Container className={'container-class'} fluid>
                     <Row className={'vis-quiz-row'}>
                         <Col lg={6} className={'vis-column'}>
-                            <img src={`./get_image?image_name=${this.state.image_list[src_img]}`} className='img_rand' resized={this.state.resize_bool}></img>
+                            <img src={`./get_image?image_name=${this.state.image_list[src_img]}`} className='img_rand'></img>
                         </Col>
                         <Col lg={6} className={'quiz-column'}>
                             <div className='grid-ques'>
                                 <p className={'q1'}>I believe the visualization shows real data.</p>
-                                <div className='l1'><Likert id="1" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l1'><Likert id="1" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 1, val)
                                 } /></div>
                                 <p className={'q2'}>I am familiar with the topic or data this visualization presents.</p>
-                                <div className='l2'><Likert id="2" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l2'><Likert id="2" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 2, val)
                                 } /></div>
                                 <p className={'q3'}>I understand what this visualization is trying to tell me.</p>
-                                <div className='l3'><Likert id="3" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l3'><Likert id="3" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 3, val)
                                 } /></div>
                                 <p className={'q4'}>I would rely on the facts in this Visualization.</p>
-                                <div className='l4'><Likert id="4" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l4'><Likert id="4" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 4, val)
                                 } /></div>
                                 <p className={'q5'}>I would use the information for a decision.</p>
-                                <div className='l5'><Likert id="5" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l5'><Likert id="5" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 5, val)
                                 } /></div>
                                 <p className={'q6'}>I would feel confident using the information to make a decision.</p>
-                                <div className='l6'><Likert id="6" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l6'><Likert id="6" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 6, val)
                                 } /></div>
                                 <p className={'q7'}>This is a Narrative Visualization (Telling a story or sharing something that happened.)</p>
-                                <div className='l7'><Likert id="7" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l7'><Likert id="7" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 7, val)
                                 } /></div>
                                 <p className={'q8'}>This is a Descriptive Visualization (Sharing details about people, places, or things.)</p>
-                                <div className='l8'><Likert id="8" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l8'><Likert id="8" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 8, val)
                                 } /></div>
                                 <p className={'q9'}>This is a Persuasive Visualization (Getting a point across or trying to convince the viewer.)</p>
-                                <div className='l9'><Likert id="9" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l9'><Likert id="9" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 9, val)
                                 } /></div>
                                 <p className={'q10'}>This is an Expository Visualization (Explaining or informing about a particular topic.)</p>
-                                <div className='l10'><Likert id="10" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l10'><Likert id="10" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 10, val)
                                 } /></div>
                                 <p className={'q11'}>This is a Creative Visualization (An artistic expression with data.)</p>
-                                <div className='l11'><Likert id="11" name="language" responses={[
-                                    { value: 1, text: "Strongly Disagree", checked: (this.selectedValue === 1) },
-                                    { value: 2, text: "Disagree", checked: (this.selectedValue === 2) },
-                                    { value: 3, text: "Neither Agree nor Disagree", checked: (this.selectedValue === 3) },
-                                    { value: 4, text: "Agree", checked: (this.selectedValue === 4) },
-                                    { value: 5, text: "Strongly Agree", checked: (this.selectedValue === 5) }
-                                ]} onChange={(val) =>
+                                <div className='l11'><Likert id="11" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 11, val)
                                 } /></div>
                                 <div className={'sub-btn'}>
@@ -424,129 +364,6 @@ class VisQuiz extends Component {
                 </>
             )
         }
-
-
-
-
-        // if (this.state.current_visualization_index < this.state.list_of_visualizations.length) {
-        //     const options = visualizations[this.state.current_visualization_index]['options'].map((item, i) =>
-        //         <Button variant="secondary" size="sm" className={'question-option'} id={`button_option_${i}`} key={`button_option_${i}`} onClick={() =>
-        //             this.clicked_answer(visualizations[this.state.current_visualization_index]['type'], visualizations[this.state.current_visualization_index]['question'], item, visualizations[this.state.current_visualization_index]['correct_answer'], "timeTaken", visualizations[this.state.current_visualization_index]['cimage'])}>
-        //             {item}
-        //         </Button>
-        //     )
-        //     let VisComp = visualizations[this.state.current_visualization_index]['vis']
-        //     //console.log(VisComp)
-        //     return (
-        //         <Container className={'container-class'} fluid>
-        //             <Row className={'vis-quiz-row'}>
-        //                 <Col lg={6} className={'vis-column'}>
-        //                     <VisComp width={window.innerWidth} height={window.innerHeight} resized={this.state.resize_bool}></VisComp>
-        //                 </Col>
-        //                 <Col lg={6} className={'quiz-column'}>
-        //                     <div className='timeStamp'>
-        //                         <Countdown date={Date.now() + 25000} renderer={({ minutes, seconds, completed }) => {
-        //                             return <span>Time Remaining: {minutes}:{seconds}</span>;
-        //                         }} autoStart={true} key={Date.now()} onComplete={() => alert('Time\'s up! Please select \'Skip\' to proceed to the next question.')} />
-        //                         {/* <CountDownTimer hoursMinSecs={hoursMinSecs} /> */}
-        //                     </div>
-        //                     <div className={'question-container'}>
-        //                         <div className={'question-text'}>
-        //                             <p>{visualizations[this.state.current_visualization_index]['question']}</p>
-        //                         </div>
-
-        //                         <div className={'question-options d-grid gap-2 btn-block'}>
-        //                             {options}
-        //                         </div>
-        //                     </div>
-
-        //                 </Col>
-        //             </Row>
-        //             <Row className={'progress-bar-row'}>
-        //                 <ProgressBar completed={(parseInt(this.state.current_visualization_index)).toString()} maxCompleted={num.toString()} length={Math.min(window.innerWidth, window.innerHeight)} />
-        //             </Row>
-        //         </Container>
-        //     );
-        // } 
-        // else {
-        //     return (
-        //         <>
-        //             <Row className={'justify-content-center no-margin-row'}>
-        //                 <Col lg={6} className={'text-box text-justify'}>
-
-
-        //                     <Form.Group className={'question'}>
-        //                         <Form.Label>Please select your age.</Form.Label>
-        //                         <Form.Select as="select" id={'age'} onChange={this.handleDemographicChange.bind(this)}>
-        //                             <option value={null} selected={true} disabled={true}></option>
-        //                             {ages.map((d, i) => (
-        //                                 <option key={d} value={d}>{d}</option>
-        //                             ))}
-        //                         </Form.Select>
-        //                     </Form.Group>
-        //                     <hr />
-
-        //                     <Form.Group className={'question'}>
-        //                         <Form.Label>Please select your gender.</Form.Label>
-        //                         <Form.Select as="select" id={'sex'} onChange={this.handleDemographicChange.bind(this)}>
-        //                             <option value={null} selected={true} disabled={true}></option>
-        //                             <option key={'male'} value={'male'}>Male</option>
-        //                             <option key={'female'} value={'female'}>Female</option>
-        //                             <option key={'other'} value={'other'}>Other</option>
-        //                             <option key={'withdraw'} value={'withdraw'}>I do not wish to disclose.</option>
-        //                         </Form.Select>
-        //                     </Form.Group>
-        //                     <hr />
-
-        //                     <Form.Group className={'question'}>
-        //                         <Form.Label>Please select your highest level of completed education.</Form.Label>
-        //                         <Form.Select as="select" id={'education'} onChange={this.handleDemographicChange.bind(this)}>
-        //                             <option value={null} selected={true} disabled={true}></option>
-        //                             <option value={'highschool'}>High School Diploma / GED</option>
-        //                             <option value={'associate'}>Associate Degree</option>
-        //                             <option value={'bachelors'}>Bachelors Degree</option>
-        //                             <option value={'masters'}>Masters Degree</option>
-        //                             <option value={'doctorate'}>Doctorate Degree</option>
-        //                         </Form.Select>
-        //                     </Form.Group>
-        //                     <hr />
-
-        //                     <Form.Group className={'question'}>
-        //                         <Form.Label>Please select your familiarity with visualization.</Form.Label>
-        //                         <Form.Select as="select" id={'familiarity'} onChange={this.handleDemographicChange.bind(this)}>
-        //                             <option value={null} selected={true} disabled={true}></option>
-        //                             <option value={'not_familiar'}>I have never created a visualization.</option>
-        //                             <option value={'somewhat'}>I am somewhat familiar.</option>
-        //                             <option value={'very_familiar'}>I have created visualization systems before. </option>
-        //                         </Form.Select>
-        //                     </Form.Group>
-        //                     <hr />
-
-
-        //                     <Form.Group>
-        //                         <Form.Label>Please include any additional comments below. (optional)</Form.Label>
-        //                         <Form.Control as="textarea" id={'comments'} rows={3} onChange={this.handleTextChange.bind(this)}>
-        //                         </Form.Control>
-        //                     </Form.Group>
-        //                     <hr />
-
-
-        //                     <div className={'text-center'}><Button className={'btn-sm'}
-        //                         variant={"success"}
-        //                         onClick={this.on_survey_click.bind(this)}
-        //                         disabled={(this.state.form_incomplete || this.state.demographics_incomplete)}
-        //                         id={'survey_submit-btn'}>
-        //                         Submit Responses
-        //                     </Button></div>
-
-        //                     <p className={'text-box'}></p>
-        //                 </Col>
-
-        //             </Row>
-        //         </>
-
-        //     )
-        // }
     }
 }
 
