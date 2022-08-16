@@ -172,30 +172,33 @@ class VisQuiz extends Component {
     }
 
     record_ques(img, id, response_type) {
+
         //console.log(img in this.state.responses)
         if (!(img in this.state.responses)) {
             //console.log('CONDITIONAL EXECUTING')
             this.state.responses[img] = []
         }
-
-        this.state.responses[img].push({ id: id, response: response_type })
+        var select = document.querySelector('input[type=radio][name=likert]:checked');
+        this.state.responses[img].push({ id: id, response: select.value })
         console.log('RESPONSES', this.state.responses)
         console.log("Which one is clicked: ")
         //console.log(id)
     }
 
     next_btn() {
-        document.getElementById('visuallyHidden').checked = false
+        var radios = document.getElementsByTagName('input');
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].type == 'radio' && radios[i].checked) {
+                radios[i].checked = false
+            }
+        }
+        // var elem = document.getElementById("l1-ques")
+        // elem.remove()
         console.log("Next button is clicked")
         this.setState({
             current_visualization_index: this.state.current_visualization_index + 1,
         })
-        // $('#nxt-btn').click(function () {
-        //     $("input:radio[name=language]:checked").checked = false;
-        // })
-        // $('#1').click(function () {
-        //     $('input[type="radio"]').prop('checked', false);
-        // })
+
 
     }
 
@@ -228,50 +231,473 @@ class VisQuiz extends Component {
                         </Col>
                         <Col lg={6} className={'quiz-column'}>
                             <div className='grid-ques'>
-                                <p className={'q1'}>I believe the visualization shows real data.</p>
-                                <div className='l1'><Likert id="1" name="language" responses={this.state.response_likert} onChange={(val) =>
-                                    this.record_ques(this.state.image_list[src_img], 1, val)
-                                } /></div>
+                                {/* <p className={'q1'}>I believe the visualization shows real data.</p>
+                                <div className='l1' id="l1-ques"></div>
                                 <p className={'q2'}>I am familiar with the topic or data this visualization presents.</p>
-                                <div className='l2'><Likert id="2" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l2' id="l1-ques"><Likert id="2" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 2, val)
                                 } /></div>
                                 <p className={'q3'}>I understand what this visualization is trying to tell me.</p>
-                                <div className='l3'><Likert id="3" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l3' id="l1-ques"><Likert id="3" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 3, val)
                                 } /></div>
                                 <p className={'q4'}>I would rely on the facts in this Visualization.</p>
-                                <div className='l4'><Likert id="4" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l4' id="l1-ques"><Likert id="4" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 4, val)
                                 } /></div>
                                 <p className={'q5'}>I would use the information for a decision.</p>
-                                <div className='l5'><Likert id="5" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l5' id="l1-ques"><Likert id="5" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 5, val)
                                 } /></div>
                                 <p className={'q6'}>I would feel confident using the information to make a decision.</p>
-                                <div className='l6'><Likert id="6" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l6' id="l1-ques"><Likert id="6" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 6, val)
                                 } /></div>
                                 <p className={'q7'}>This is a Narrative Visualization (Telling a story or sharing something that happened.)</p>
-                                <div className='l7'><Likert id="7" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l7' id="l1-ques"><Likert id="7" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 7, val)
                                 } /></div>
                                 <p className={'q8'}>This is a Descriptive Visualization (Sharing details about people, places, or things.)</p>
-                                <div className='l8'><Likert id="8" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l8' id="l1-ques"><Likert id="8" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 8, val)
                                 } /></div>
                                 <p className={'q9'}>This is a Persuasive Visualization (Getting a point across or trying to convince the viewer.)</p>
-                                <div className='l9'><Likert id="9" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l9' id="l1-ques"><Likert id="9" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 9, val)
                                 } /></div>
                                 <p className={'q10'}>This is an Expository Visualization (Explaining or informing about a particular topic.)</p>
-                                <div className='l10'><Likert id="10" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l10' id="l1-ques"><Likert id="10" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 10, val)
                                 } /></div>
                                 <p className={'q11'}>This is a Creative Visualization (An artistic expression with data.)</p>
-                                <div className='l11'><Likert id="11" name="language" responses={this.state.response_likert} onChange={(val) =>
+                                <div className='l11' id="l1-ques"><Likert id="11" name="language" responses={this.state.response_likert} onChange={(val) =>
                                     this.record_ques(this.state.image_list[src_img], 11, val)
                                 } /></div>
+                                <div className={'sub-btn'}>
+                                    <Button id={'nxt-btn'} className={'btn-1'} type={"button"} onClick={() =>
+                                        this.next_btn()
+                                    }>Next</Button>
+                                </div> */}
+                                <p className={'statement'}>I believe the visualization shows real data.</p>
+                                <div className={'l1'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='1' type='radio' name='likert' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type='radio' name='likert' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type='radio' name='likert' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type='radio' name='likert' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type='radio' name='likert' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_2'}>I am familiar with the topic or data this visualization presents.</p>
+                                <div className={'l2'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='2' type='radio' name='likert_2' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 2, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type='radio' name='likert_2' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 2, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type='radio' name='likert_2' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 2, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type='radio' name='likert_2' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 2, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type='radio' name='likert_2' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 2, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_3'}>I understand what this visualization is trying to tell me.</p>
+                                <div className={'l3'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='3' type='radio' name='likert_3' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='3' type='radio' name='likert_3' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='3' type='radio' name='likert_3' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='3' type='radio' name='likert_3' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='3' type='radio' name='likert_3' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_4'}>I would rely on the facts in this Visualization.</p>
+                                <div className={'l4'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='4' type='radio' name='likert_4' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 4, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='4' type='radio' name='likert_4' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 4, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='4' type='radio' name='likert_4' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 4, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='4' type='radio' name='likert_4' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 4, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='4' type='radio' name='likert_4' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 4, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_5'}>I would use the information for a decision.</p>
+                                <div className={'l5'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='5' type='radio' name='likert_5' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 5, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='5' type='radio' name='likert_5' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 5, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='5' type='radio' name='likert_5' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 5, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='5' type='radio' name='likert_5' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 5, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='5' type='radio' name='likert_5' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 5, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_6'}>I would feel confident using the information to make a decision.</p>
+                                <div className={'l6'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='6' type='radio' name='likert_6' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 6, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='6' type='radio' name='likert_6' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 6, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='6' type='radio' name='likert_6' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 6, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='6' type='radio' name='likert_6' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 6, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='6' type='radio' name='likert_6' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 6, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_7'}>This is a Narrative Visualization (Telling a story or sharing something that happened.)</p>
+                                <div className={'l7'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='7' type='radio' name='likert_7' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 7, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='7' type='radio' name='likert_7' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 7, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='7' type='radio' name='likert_7' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 7, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='7' type='radio' name='likert_7' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 7, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='7' type='radio' name='likert_7' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 7, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_8'}>This is a Descriptive Visualization (Sharing details about people, places, or things.)</p>
+                                <div className={'l8'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='8' type='radio' name='likert_8' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='8' type='radio' name='likert_8' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='8' type='radio' name='likert_8' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='8' type='radio' name='likert_8' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='8' type='radio' name='likert_8' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_9'}>This is a Persuasive Visualization (Getting a point across or trying to convince the viewer.)</p>
+                                <div className={'l9'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='9' type='radio' name='likert_9' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='9' type='radio' name='likert_9' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='9' type='radio' name='likert_9' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='9' type='radio' name='likert_9' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='9' type='radio' name='likert_9' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_10'}>This is an Expository Visualization (Explaining or informing about a particular topic.)</p>
+                                <div className={'l10'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='10' type='radio' name='likert_10' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='10' type='radio' name='likert_10' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='10' type='radio' name='likert_10' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='10' type='radio' name='likert_10' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='10' type='radio' name='likert_10' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <p className={'statement_11'}>This is a Creative Visualization (An artistic expression with data.)</p>
+                                <div className={'l11'}>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='11' type='radio' name='likert_11' value='Strong_agree' onChange={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='11' type='radio' name='likert_11' value='agree' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label> Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='11' type='radio' name='likert_11' value='nor' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Neither Agree nor Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='11' type='radio' name='likert_11' value='dis' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Disagree</label>
+                                        </li>
+                                        <li>
+                                            <input id='11' type='radio' name='likert_11' value='std' onClick={(val) =>
+                                                this.record_ques(this.state.image_list[src_img], 3, val.value)
+                                            } />
+                                            <label>Strongly Disagree</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* <form action=''>
+                                    <label className={"statement"}>This HTML Likert scale is easy to use.</label>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Strongly agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Neutral</label>
+                                        </li>
+                                        <li></li>
+                                    </ul>
+                                    <label className={"statement"}>This HTML Likert scale is easy to use.</label>
+                                    <ul className={'likert'}>
+                                        <li>
+                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Strongly agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Agree</label>
+                                        </li>
+                                        <li>
+                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
+                                            <label>Neutral</label>
+                                        </li>
+                                        <li></li>
+                                    </ul>
+                                </form> */}
                                 <div className={'sub-btn'}>
                                     <Button id={'nxt-btn'} className={'btn-1'} type={"button"} onClick={() =>
                                         this.next_btn()
