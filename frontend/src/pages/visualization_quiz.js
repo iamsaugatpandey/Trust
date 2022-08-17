@@ -172,14 +172,62 @@ class VisQuiz extends Component {
     }
 
     record_ques(img, id, response_type) {
+        console.log("hello" + response_type)
 
         //console.log(img in this.state.responses)
         if (!(img in this.state.responses)) {
             //console.log('CONDITIONAL EXECUTING')
             this.state.responses[img] = []
         }
-        var select = document.querySelector('input[type=radio][name=likert]:checked');
-        this.state.responses[img].push({ id: id, response: select.value })
+        if (document.getElementById('1').checked) {
+            var select = document.querySelector('input[type=radio][name=likert]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('2').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_2]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('3').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_3]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('4').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_4]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('5').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_5]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('6').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_6]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('7').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_7]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('8').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_8]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('9').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_9]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('10').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_10]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+        else if (document.getElementById('11').checked) {
+            var select = document.querySelector('input[type=radio][name=likert_2]:checked');
+            this.state.responses[img].push({ id: id, response: select.value })
+        }
+
+        //var select = document.querySelector('input[type=radio][name=likert]:checked');
+        //this.state.responses[img].push({ id: id, response: select.value })
+        //var select = document.querySelector('input[type=radio][name=likert]:checked');
+
         console.log('RESPONSES', this.state.responses)
         console.log("Which one is clicked: ")
         //console.log(id)
@@ -283,31 +331,31 @@ class VisQuiz extends Component {
                                     <ul className={'likert'}>
                                         <li>
                                             <input id='1' type='radio' name='likert' value='Strong_agree' onChange={(val) =>
-                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                                this.record_ques(this.state.image_list[src_img], 1, val.name)
                                             } />
                                             <label>Strongly Agree</label>
                                         </li>
                                         <li>
                                             <input id='1' type='radio' name='likert' value='agree' onClick={(val) =>
-                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                                this.record_ques(this.state.image_list[src_img], 1, val.name)
                                             } />
                                             <label> Agree</label>
                                         </li>
                                         <li>
                                             <input id='1' type='radio' name='likert' value='nor' onClick={(val) =>
-                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                                this.record_ques(this.state.image_list[src_img], 1, val.name)
                                             } />
                                             <label>Neither Agree nor Disagree</label>
                                         </li>
                                         <li>
                                             <input id='1' type='radio' name='likert' value='dis' onClick={(val) =>
-                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                                this.record_ques(this.state.image_list[src_img], 1, val.name)
                                             } />
                                             <label>Disagree</label>
                                         </li>
                                         <li>
                                             <input id='1' type='radio' name='likert' value='std' onClick={(val) =>
-                                                this.record_ques(this.state.image_list[src_img], 1, val.value)
+                                                this.record_ques(this.state.image_list[src_img], 1, val.name)
                                             } />
                                             <label>Strongly Disagree</label>
                                         </li>
