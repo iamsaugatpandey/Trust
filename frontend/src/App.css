@@ -62,6 +62,7 @@
 
 .container-class { 
     max-width: 100% !important;
+    /* max-height: 100%; */
 }
 
 .terms-container{
@@ -112,10 +113,10 @@ margin-right: 30%;
  }
 .progress-bar-row {
     display: flex;
-    position: relative;
+    /* position: relative; */
     @media (max-width: 600px) {
         display: flex;
-        position: relative;
+        /* position: relative; */
         width: 100%;
         padding-top: 20%;
       }
@@ -1067,16 +1068,20 @@ img {
     display: grid;
     height: 92vh;
     grid-template-columns: 35% 75%;
-    grid-template-rows: 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8% 8%;
+    grid-template-rows: 1% 7.5% 7.5% 1% 7.5% 1% 7.5% 7.5% 1% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5% 7.5%;
     grid-gap: 1px;
     row-gap: 1%;
     grid-auto-flow: row;
     grid-template-areas:
+      "h_1 h_1"
       "statement l1"
       "statement_2 l2"
+      "h_2 h_2"
       "statement_3 l3"
+      "h_3 h_3"
       "statement_4 l4"
       "statement_5 l5"
+      "h_4 h_4"
       "statement_6 l6"
       "statement_7 l7"
       "statement_8 l8"
@@ -1093,6 +1098,23 @@ img {
   .sub-btn{
       grid-area: sub-btn;
   }
+  .h_1 { 
+      grid-area: h_1; 
+      font-weight: bolder; 
+    }
+  .h_2 { 
+      grid-area: h_2; 
+      font-weight: bolder;
+    }
+  .h_3 { 
+      grid-area: h_3; 
+      font-weight: bolder;
+    }
+  .h_4 { 
+      grid-area: h_4; 
+      font-weight: bolder;
+    }
+    
   
   .statement { 
       grid-area: statement;
@@ -1225,8 +1247,9 @@ img {
 
     .img_rand{
         height: 70vh;
+        width: 100%;
         /* width: 50%; */
-        object-fit: contain;
+        /* object-fit: contain; */
     }
     .likertIndicator{
         width: 0.5em;
@@ -1283,9 +1306,22 @@ img {
         label{
             font-size: 0.9vh;
         }
+        .h_1, .h_2, .h_3, .h_4{
+            font-size: 1.2vh;
+        }
     }
     .form-label{
         font-size: 1.5vh;
     }
 
-      
+    /* #zoomA{
+        transition: transform ease-in-out 0.3s;
+    }
+    #zoomA:hover {
+        transform: scale(1.5);
+      } */
+      #nxt-btn{
+        color: #fff;
+        background-color: #198754;
+        border-color: #198754;
+      }

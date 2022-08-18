@@ -62,14 +62,14 @@ class Tutorial extends Component {
                 <Row className={'justify-content-center tutorial-body'}>
                     <Col lg={6} className={'text-box text-justify'}>
 
-                        <p className='head_1'>This test measures your ability to read different visualizations.</p>
+                        <p className='head_1'>This test aims at understanding how visualization designs regulate the perception of trust.</p>
                         <ul>
-                            <li className='int_1'>There will be total 53 different questions.</li>
-
-                            <li className='int_1'>You will get +1 point for every correct answer and there is no negative point for an incorrect response.</li>
+                            <li className='int_1'>There will be total of 30 different images. For every image, you will be given 11 statements.</li>
+                            <li className='int_1'>For each statement, you will be asked to rate your level of agreement with each statement.</li>
+                            <li className='int_1'>You will have the option of zooming in and out of the images using both pinch in and out gestures on the mousepad. You can also use mouse scroll for zooming in and out.</li>
                             <li className='int_1'>For a better exprience, use your desktop/laptop/Mac to attempt this quiz.</li>
                             <li className='int_1'>Participants with color blindness may have difficulty taking this quiz.  </li>
-                            <li className='int_1'>You will be given 25 seconds for every question. There will be a timer on the top right corner of the screen. Once you run out of the time, please select 'Skip' to proceed to the next question.</li>
+                            <li className='int_1'>There will be no time limit for each question.</li>
                             {/* <li>We will store information about your mouse interaction (e.g. what you clicked) when answering the survey questions.</li> */}
 
                         </ul>

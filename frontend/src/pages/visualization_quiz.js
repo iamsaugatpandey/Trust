@@ -5,6 +5,8 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import Countdown from 'react-countdown';
 import Likert from 'react-likert-scale';
 import $ from 'jquery';
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+
 
 
 var score_1 = 0
@@ -37,8 +39,7 @@ class VisQuiz extends Component {
             demographic_questions: {
                 'sex': null,
                 'age': null,
-                'education': null,
-                'familiarity': null
+                'education': null
             },
             demographics_incomplete: true,
             comment: '',
@@ -275,7 +276,11 @@ class VisQuiz extends Component {
                 <Container className={'container-class'} fluid>
                     <Row className={'vis-quiz-row'}>
                         <Col lg={6} className={'vis-column'}>
-                            <img src={`./get_image?image_name=${this.state.image_list[src_img]}`} className='img_rand'></img>
+                            <TransformWrapper initialScale={1} defaultPositionX={100} defaultPositionY={200}>
+                                <TransformComponent>
+                                    <img src={`./get_image?image_name=${this.state.image_list[src_img]}`} id="zoomA" className='img_rand'></img>
+                                </TransformComponent>
+                            </TransformWrapper>
                         </Col>
                         <Col lg={6} className={'quiz-column'}>
                             <div className='grid-ques'>
@@ -326,6 +331,7 @@ class VisQuiz extends Component {
                                         this.next_btn()
                                     }>Next</Button>
                                 </div> */}
+                                <p className={"h_1"}>Credibility</p>
                                 <p className={'statement'}>I believe the visualization shows real data.</p>
                                 <div className={'l1'}>
                                     <ul className={'likert'}>
@@ -396,6 +402,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
+                                <p className={"h_2"}>Understand</p>
                                 <p className={'statement_3'}>I understand what this visualization is trying to tell me.</p>
                                 <div className={'l3'}>
                                     <ul className={'likert'}>
@@ -431,6 +438,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
+                                <p className={"h_3"}>Future action</p>
                                 <p className={'statement_4'}>I would rely on the facts in this Visualization.</p>
                                 <div className={'l4'}>
                                     <ul className={'likert'}>
@@ -466,7 +474,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_5'}>I would use the information for a decision.</p>
+                                <p className={'statement_5'}>I would feel confident using the information to make a decision.</p>
                                 <div className={'l5'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -501,7 +509,8 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_6'}>I would feel confident using the information to make a decision.</p>
+                                <p className={"h_4"}>Motive (Genre)</p>
+                                <p className={'statement_6'}>This is a Narrative Visualization (Telling a story or sharing something that happened.)</p>
                                 <div className={'l6'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -536,7 +545,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_7'}>This is a Narrative Visualization (Telling a story or sharing something that happened.)</p>
+                                <p className={'statement_7'}>This is a Descriptive Visualization (Sharing details about people, places, or things.)</p>
                                 <div className={'l7'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -571,7 +580,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_8'}>This is a Descriptive Visualization (Sharing details about people, places, or things.)</p>
+                                <p className={'statement_8'}>This is a Persuasive Visualization (Getting a point across or trying to convince the viewer.)</p>
                                 <div className={'l8'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -606,7 +615,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_9'}>This is a Persuasive Visualization (Getting a point across or trying to convince the viewer.)</p>
+                                <p className={'statement_9'}>This is an Expository Visualization (Explaining or informing about a particular topic.)</p>
                                 <div className={'l9'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -641,7 +650,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_10'}>This is an Expository Visualization (Explaining or informing about a particular topic.)</p>
+                                <p className={'statement_10'}>This is a Creative Visualization (An artistic expression with data.)</p>
                                 <div className={'l10'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -676,7 +685,7 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-                                <p className={'statement_11'}>This is a Creative Visualization (An artistic expression with data.)</p>
+                                <p className={'statement_11'}>This is a Technical Visualization (Presenting specialized or scientific data.)</p>
                                 <div className={'l11'}>
                                     <ul className={'likert'}>
                                         <li>
@@ -711,45 +720,10 @@ class VisQuiz extends Component {
                                         </li>
                                     </ul>
                                 </div>
-
-                                {/* <form action=''>
-                                    <label className={"statement"}>This HTML Likert scale is easy to use.</label>
-                                    <ul className={'likert'}>
-                                        <li>
-                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Strongly agree</label>
-                                        </li>
-                                        <li>
-                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Agree</label>
-                                        </li>
-                                        <li>
-                                            <input id='1' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Neutral</label>
-                                        </li>
-                                        <li></li>
-                                    </ul>
-                                    <label className={"statement"}>This HTML Likert scale is easy to use.</label>
-                                    <ul className={'likert'}>
-                                        <li>
-                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Strongly agree</label>
-                                        </li>
-                                        <li>
-                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Agree</label>
-                                        </li>
-                                        <li>
-                                            <input id='2' type="radio" name="likert" value="strong_agree" checked />
-                                            <label>Neutral</label>
-                                        </li>
-                                        <li></li>
-                                    </ul>
-                                </form> */}
                                 <div className={'sub-btn'}>
-                                    <Button id={'nxt-btn'} className={'btn-1'} type={"button"} onClick={() =>
+                                    <button id={'nxt-btn'} className={'btn-1'} type={"button"} onClick={() =>
                                         this.next_btn()
-                                    }>Next</Button>
+                                    }>Next</button>
                                 </div>
                             </div>
                         </Col>
@@ -803,7 +777,7 @@ class VisQuiz extends Component {
                             </Form.Group>
                             <hr />
 
-                            <Form.Group className={'question'}>
+                            {/* <Form.Group className={'question'}>
                                 <Form.Label>Please select your familiarity with visualization.</Form.Label>
                                 <Form.Select as="select" id={'familiarity'} onChange={this.handleDemographicChange.bind(this)}>
                                     <option value={null} selected={true} disabled={true}></option>
@@ -812,7 +786,7 @@ class VisQuiz extends Component {
                                     <option value={'very_familiar'}>I have created visualization systems before. </option>
                                 </Form.Select>
                             </Form.Group>
-                            <hr />
+                            <hr /> */}
 
 
                             <Form.Group>
