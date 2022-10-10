@@ -284,7 +284,7 @@ class VisQuiz extends Component {
                         </Col>
                         <Col lg={6} className={'quiz-column'}>
                             <div className='grid-ques'>
-                                {/* <p className={'q1'}>I believe the visualization shows real data.</p>
+                                <p className={'q1'}>I believe the visualization shows real data.</p>
                                 <div className='l1' id="l1-ques"></div>
                                 <p className={'q2'}>I am familiar with the topic or data this visualization presents.</p>
                                 <div className='l2' id="l1-ques"><Likert id="2" name="language" responses={this.state.response_likert} onChange={(val) =>
@@ -330,7 +330,7 @@ class VisQuiz extends Component {
                                     <Button id={'nxt-btn'} className={'btn-1'} type={"button"} onClick={() =>
                                         this.next_btn()
                                     }>Next</Button>
-                                </div> */}
+                                </div> 
                                 <p className={"h_1"}>Credibility</p>
                                 <p className={'statement'}>I believe the visualization shows real data.</p>
                                 <div className={'l1'}>
