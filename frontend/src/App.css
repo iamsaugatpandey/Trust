@@ -155,33 +155,28 @@
     border: none !important;
 }
 
+
 .zoom-glass{
     position: absolute;
     bottom: 5%;
-    right: 65%;
+    right: 55%;
     z-index: 5;
 }
 
 .zoom-out-glass{
     position: absolute;
     bottom: 5%;
-    right: 55%;
+    right: 45%;
     z-index: 6;
 }
 
 .reset{
     position: absolute;
     bottom: 5%;
-    right: 45%;
+    right: 35%;
     z-index: 7;
 }
 
-.center-icon{
-    position: absolute;
-    bottom: 5%;
-    right: 35%;
-    z-index: 8;
-}
 
 /*QUESTION*/
 .question-container {
@@ -1086,8 +1081,8 @@ img {
 
 /*MAIN IMAGE*/
 .img_rand {
-    height: 70vh;
-    width: 100%;
+    height: 90%;
+    width: 90%;
     object-fit: contain;
 }
 
