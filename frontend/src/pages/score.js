@@ -1,33 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Container, Col, Row, Navbar, Button, ButtonGroup, ToggleButton, Form, InputGroup, FormControl } from 'react-bootstrap';
-import { score_1 } from './visualization_quiz';
+import React, { Component} from 'react';
+import {Col, Row, Button, InputGroup, FormControl } from 'react-bootstrap';
 import '../App.css';
-import ImageList from '@mui/material/ImageList';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { bar } from './visualization_quiz';
-import { area } from './visualization_quiz';
-import { bubble } from './visualization_quiz';
-import { chloro } from './visualization_quiz';
-import { hist } from './visualization_quiz';
-import { line } from './visualization_quiz';
-import { treemap } from './visualization_quiz';
-import { scatter } from './visualization_quiz';
-import { stckBar } from './visualization_quiz';
-import { stckArea } from './visualization_quiz';
-import { stckBar2 } from './visualization_quiz';
-import { pie } from './visualization_quiz';
-import { barQues } from './visualization_quiz';
-import { areaQues } from './visualization_quiz';
-import { bubbleQues } from './visualization_quiz';
-import { chloroQues } from './visualization_quiz';
-import { histQues } from './visualization_quiz';
-import { lineQues } from './visualization_quiz';
-import { treemapQues } from './visualization_quiz';
-import { scatterQues } from './visualization_quiz';
-import { stckBarQues } from './visualization_quiz';
-import { stckAreaQues } from './visualization_quiz';
-import { stckBar2Ques } from './visualization_quiz';
-import { pieQues } from './visualization_quiz';
 import wrong from '../components/data/Images/RightAns.png';
 import right from '../components/data/Images/WrongAns.png';
 import skip from '../components/data/Images/skip.png'
@@ -35,9 +9,6 @@ import skip from '../components/data/Images/skip.png'
 
 
 class Score extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         if (this.props.location.state != null) {
@@ -54,7 +25,7 @@ class Score extends Component {
         else if (arr_value === 0) {
             return right;
         }
-        else if (arr_value == 2) {
+        else if (arr_value === 2) {
             return skip;
         }
     }

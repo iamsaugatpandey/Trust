@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
-import {Col, Row, Button, InputGroup, FormControl} from 'react-bootstrap';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Col, Row} from 'react-bootstrap';
 
 class ThankYou extends Component {
-
-
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         if (this.props.location.state != null) {

@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Col, Row, Navbar, Button, ButtonGroup, ToggleButton, Form, InputGroup } from 'react-bootstrap';
+import React, { Component, useState } from 'react';
+import { Col, Row, Button, ButtonGroup, ToggleButton, Form } from 'react-bootstrap';
 
 
 function SurveyQuestion(props) {

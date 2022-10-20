@@ -1,13 +1,7 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Col, Row, Navbar, Button } from 'react-bootstrap';
-import { PDFViewer } from '@react-pdf/renderer';
-import { Document, Page } from 'react-pdf';
+import React, { Component} from 'react';
+import { Col, Row, Button } from 'react-bootstrap';
 
 class Intro extends Component {
-
-  constructor(props) {
-    super(props)
-  }
 
   go_to_tutorial() {
     var pageType = {

@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Col, Row, Navbar, Button, Image, ButtonGroup } from 'react-bootstrap';
+import React, { Component} from 'react';
+import { Col, Row, Button} from 'react-bootstrap';
 import '../App.css';
 
 // uncomment if running on local backend
