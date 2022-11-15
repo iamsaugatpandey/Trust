@@ -693,7 +693,7 @@ class VisQuiz extends Component {
                                             </li>
                                             <li>
                                                 <input id='45' type='radio' name='likert_9' value='std' onClick={() =>
-                                                    this.record_ques(this.state.image_list[src_img],'likert_9', 45, 'std')
+                                                    this.record_ques(this.state.image_list[src_img],'' 45, 'std')
                                                 } />
                                                 <label>Strongly Disagree</label>
                                             </li>
