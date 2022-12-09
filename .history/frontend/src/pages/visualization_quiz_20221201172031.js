@@ -368,7 +368,7 @@ class VisQuiz extends Component {
                         </Col>
                         <Col lg={6} className={'quiz-column'}>
                             <div className='grid-ques'>
-                                {/*CREDIBILITY*/}
+                                {/*credITABILITY*/}
                                
                                     <p className={"h_1"}>CREDIBILITY</p>
                                     <p className={'statement'}>I believe the visualization shows real data.</p>
@@ -576,7 +576,7 @@ class VisQuiz extends Component {
                                             </li>
                                             <li>
                                                 <input id='28' type='radio' name='likert_6' value='nor' onClick={() =>
-                                                    this.record_ques(this.state.image_list[src_img],'likert_6', 28, 'noe')
+                                                    this.record_ques(this.state.image_list[src_img],'likert_6', 28, 'nor')
                                                 } />
                                                 <label>Neither</label>
                                             </li>
@@ -693,7 +693,7 @@ class VisQuiz extends Component {
                                             </li>
                                             <li>
                                                 <input id='45' type='radio' name='likert_9' value='std' onClick={() =>
-                                                    this.record_ques(this.state.image_list[src_img], 45, 'std')
+                                                    this.record_ques(this.state.image_list[src_img],'likert_9', 45, 'std')
                                                 } />
                                                 <label>Strongly Disagree</label>
                                             </li>
